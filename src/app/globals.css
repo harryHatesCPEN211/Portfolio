@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ──────────────────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-black:        #0f0f0f;
+  --color-cream:        #f9f7f3;
+  --color-accent:       #1a3a2a;
+  --color-accent-light: #2d6148;
+  --color-accent-dim:   #122a1e;
+  --color-surface:      #161616;
+  --color-surface-2:    #1e1e1e;
+  --color-border:       #2a2a2a;
+  --color-border-light: #e8e5df;
+
+  --color-gray-100: #f0eeea;
+  --color-gray-200: #e0ddd8;
+  --color-gray-300: #c5c2bc;
+  --color-gray-400: #9b9790;
+  --color-gray-500: #7a776f;
+  --color-gray-600: #5a5750;
+  --color-gray-700: #3a3830;
+
+  /* Fonts */
+  --font-serif: var(--font-dm-serif), "Georgia", serif;
+  --font-mono:  var(--font-dm-mono), "Courier New", monospace;
+
+  /* Spacing extras */
+  --spacing-section: 7rem;
+
+  /* Radius */
+  --radius-card: 0.75rem;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-black);
+  color: var(--color-cream);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  line-height: 1.75;
+  min-height: 100dvh;
+}
+
+/* ─── Typography ─────────────────────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(3rem, 7vw, 6rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-cream);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-black); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 3px;
+}
+
+/* ─── Focus ──────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent-light);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(pip --version)",
+      "Bash(pip3 --version)",
+      "Bash(git --version)",
+      "Bash(pnpm --version)",
+      "Bash(where git:*)",
+      "Bash(where python:*)",
+      "Bash(python -c \"import sys; print\\(sys.executable\\)\")",
+      "Bash(npm install:*)",
+      "Bash(echo \"npm: $\\(npm --version\\)\")",
+      "Bash(echo \"pnpm: $\\(pnpm --version\\)\")",
+      "Bash(echo \"git: $\\(git --version\\)\")",
+      "Bash(echo \"pip: $\\(pip --version 2>&1)",
+      "Read(//c/Users/nguye/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.5.0/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python scripts/search.py \"engineering portfolio dark minimal professional 3D interactive\" --design-system -p \"Harry Nguyen Portfolio\" -f markdown)",
+      "Read(//c/Users/nguye/.claude/plugins/cache/ui-ux-pro-max-skill/**)",
+      "Read(//c/Users/nguye/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.5.0/.claude/skills/**)",
+      "Bash(python scripts/search.py \"dark mode teal green technical engineering\" --domain style -n 3)",
+      "Bash(python scripts/search.py \"dark minimal portfolio technical\" --domain color -n 3)",
+      "Bash(pnpm create:*)",
+      "Bash(mv portfolio-temp/.gitignore .)",
+      "Bash(mv portfolio-temp/.eslintrc* .)",
+      "Bash(mv portfolio-temp/next.config.* .)",
+      "Bash(mv portfolio-temp/tsconfig.json .)",
+      "Bash(mv portfolio-temp/package.json .)",
+      "Bash(pnpm add:*)",
+      "Bash(rm -rf node_modules)",
+      "Bash(pnpm install:*)",
+      "Bash(node scripts/extract-model.js)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(node -e ':)"
+    ]
+  }
+}
