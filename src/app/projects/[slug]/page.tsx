@@ -218,11 +218,28 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
 
           {/* Gallery — always visible, above dropdowns */}
-          {project.gallery && project.gallery.length > 0 && (
+          {(project.gallery && project.gallery.length > 0) || project.youtubeUrl ? (
             <div className="mb-6">
-              <GallerySection items={project.gallery} />
+              {/* YouTube embed shown inline with gallery if gallery exists */}
+              {project.youtubeUrl && project.gallery && project.gallery.length > 0 && (
+                <div className="mb-6">
+                  <p className="font-mono text-sm font-medium text-accent-light mb-2 tracking-wide">Demo</p>
+                  <div className="relative w-full aspect-video rounded-card overflow-hidden border border-border">
+                    <iframe
+                      src={project.youtubeUrl}
+                      title="Project demo"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                </div>
+              )}
+              {project.gallery && project.gallery.length > 0 && (
+                <GallerySection items={project.gallery} />
+              )}
             </div>
-          )}
+          ) : null}
 
           {project.teamPhoto && (
             <figure className="space-y-3 mb-6">
@@ -269,7 +286,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </CollapsibleSection>
             )}
 
-            {project.youtubeUrl && (
+            {/* Demo dropdown only for projects without a gallery (video already shown above otherwise) */}
+            {project.youtubeUrl && (!project.gallery || project.gallery.length === 0) && (
               <CollapsibleSection title="Demo">
                 <div className="relative w-full aspect-video rounded-card overflow-hidden border border-border">
                   <iframe
