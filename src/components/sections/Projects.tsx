@@ -23,7 +23,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       }`}
     >
       {/* Image */}
-      <div className={`relative bg-surface-2 overflow-hidden flex-shrink-0 ${isFeatured ? "h-72 sm:h-96" : project.imageRight ? "h-64 sm:h-52" : "h-52"}`}>
+      <div className={`relative bg-surface-2 overflow-hidden flex-shrink-0 ${isFeatured && project.imageRight ? "h-96 sm:h-96" : isFeatured ? "h-72 sm:h-96" : project.imageRight ? "h-64 sm:h-52" : "h-52"}`}>
         {project.imageRight ? (
           /* Split layout — stacks vertically on mobile, side by side on sm+ */
           <div className="absolute inset-0 flex flex-col sm:flex-row">
@@ -39,7 +39,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                 />
               )}
             </div>
-            <div className={`relative w-full sm:w-1/2 h-1/2 sm:h-full ${project.imageRightFit === "cover" ? "" : "bg-white"}`}>
+            <div className={`relative w-full sm:w-1/2 h-1/2 sm:h-full ${project.imageRightFit === "cover" ? "" : "bg-surface-2"}`}>
               <Image
                 src={project.imageRight}
                 alt=""
