@@ -39,7 +39,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                 />
               )}
             </div>
-            <div className={`relative w-full sm:w-1/2 h-1/2 sm:h-full ${project.imageRightFit === "cover" ? "" : "bg-surface-2"}`}>
+            <div className={`relative w-full sm:w-1/2 h-1/2 sm:h-full ${project.imageRightFit === "cover" ? "" : "bg-white"}`}>
               <Image
                 src={project.imageRight}
                 alt=""
