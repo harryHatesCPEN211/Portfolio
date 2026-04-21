@@ -284,7 +284,7 @@ export const projects: Project[] = [
       "Gerber + BOM + pick-and-place file submitted to JLCPCB for SMT assembly",
     ],
     teamPhoto: "/images/projects/haptic_knob_team.JPG",
-    teamCaption: "UBC Open Robotics, Haptic Knob Team — Top to bottom: Harry Nguyen (Hardware), Guanyu Zhu (Software), Jamie Kang (Software), Trieu Truong (Hardware), Patrick Delfin (Team lead, Hardware), Nami Maleki (Software, pictured)",
+    teamCaption: "UBC Open Robotics, Haptic Knob Team — Top to bottom: Harry Nguyen (Hardware), Guanyu Zhu (Software), Jamie Kang (Software), Trieu Truong (Hardware), Andy Setiawan (Software), Patrick Delfin (Team lead, Hardware), Nami Maleki (Software, pictured)",
     diagram: "/models/03-04-26 Full System Block Diagram.drawio",
     links: [],
   },
