@@ -14,38 +14,35 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
-      className={`group bg-surface border border-border rounded-card overflow-hidden hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_32px_rgba(26,58,42,0.2)] transition-all duration-200 flex flex-col ${
-        isFeatured ? "sm:col-span-2" : ""
-      }`}
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: index * 0.06, ease: EASE }}
+      className="group w-72 sm:w-80 flex-shrink-0 snap-start bg-surface border border-border rounded-card overflow-hidden hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_32px_rgba(26,58,42,0.2)] transition-all duration-200 flex flex-col"
     >
       {/* Image */}
-      <div className={`relative bg-surface-2 overflow-hidden flex-shrink-0 ${isFeatured && project.imageRight ? "h-96 sm:h-96" : isFeatured ? "h-72 sm:h-96" : project.imageRight ? "h-64 sm:h-52" : "h-52"}`}>
+      <div className="relative h-48 bg-surface-2 overflow-hidden flex-shrink-0">
         {project.imageRight ? (
-          /* Split layout — stacks vertically on mobile, side by side on sm+ */
-          <div className="absolute inset-0 flex flex-col sm:flex-row">
-            <div className="relative w-full sm:w-1/2 h-1/2 sm:h-full border-b sm:border-b-0 sm:border-r border-border">
+          <div className="absolute inset-0 flex">
+            <div className="relative w-1/2 h-full border-r border-border">
               {project.image && (
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className={`${project.imageFit === "contain" ? "object-contain p-1" : "object-cover group-hover:scale-[1.03]"} transition-transform duration-300`}
-                  sizes="(max-width: 640px) 100vw, 50vw"
+                  sizes="160px"
                   priority={isFeatured}
                 />
               )}
             </div>
-            <div className={`relative w-full sm:w-1/2 h-1/2 sm:h-full ${project.imageRightFit === "cover" ? "" : "bg-white"}`}>
+            <div className={`relative w-1/2 h-full ${project.imageRightFit === "cover" ? "" : "bg-white"}`}>
               <Image
                 src={project.imageRight}
                 alt=""
                 fill
-                className={`${project.imageRightFit === "cover" ? "object-cover group-hover:scale-[1.03]" : "object-contain p-6"} transition-transform duration-300`}
-                sizes="(max-width: 640px) 100vw, 50vw"
+                className={`${project.imageRightFit === "cover" ? "object-cover group-hover:scale-[1.03]" : "object-contain p-4"} transition-transform duration-300`}
+                sizes="160px"
               />
             </div>
           </div>
@@ -55,7 +52,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             alt={project.title}
             fill
             className={`${project.imageFit === "contain" ? "object-contain" : "object-cover group-hover:scale-[1.03]"} transition-transform duration-300`}
-            sizes={isFeatured ? "100vw" : "(max-width: 768px) 100vw, 50vw"}
+            sizes="320px"
             priority={isFeatured}
           />
         ) : (
@@ -78,15 +75,15 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col flex-1">
-        <h3 className={`font-serif text-cream leading-snug mb-2 ${isFeatured ? "text-2xl" : "text-xl"}`}>
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="font-serif text-xl text-cream leading-snug mb-2">
           {project.title}
         </h3>
         <p className="text-sm text-gray-400 mb-4 leading-relaxed line-clamp-2 flex-1">
           {project.shortDesc}
         </p>
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.tags.slice(0, isFeatured ? 6 : 4).map((tag) => (
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tags.slice(0, 4).map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}
         </div>
@@ -102,22 +99,15 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   );
 }
 
-function MoreToComePlaceholder({ index }: { index: number }) {
+function MoreToComePlaceholder() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: EASE }}
-      className="bg-surface border border-dashed border-border rounded-card overflow-hidden flex flex-col items-center justify-center min-h-[340px] gap-4 opacity-50 sm:col-span-2"
-      aria-label="More projects coming soon"
-    >
-      <div className="w-10 h-10 rounded-full border border-dashed border-gray-600 flex items-center justify-center">
+    <div className="w-56 flex-shrink-0 snap-start bg-surface border border-dashed border-border rounded-card flex flex-col items-center justify-center gap-3 opacity-40">
+      <div className="w-9 h-9 rounded-full border border-dashed border-gray-600 flex items-center justify-center">
         <span className="text-gray-500 text-lg leading-none">+</span>
       </div>
-      <p className="font-serif italic text-gray-500 text-lg">More to come</p>
-      <p className="text-xs font-mono text-gray-600 tracking-widest uppercase">In progress</p>
-    </motion.div>
+      <p className="font-serif italic text-gray-500 text-base">More to come</p>
+      <p className="text-[10px] font-mono text-gray-600 tracking-widest uppercase">In progress</p>
+    </div>
   );
 }
 
@@ -125,22 +115,30 @@ export function Projects() {
   return (
     <motion.section
       id="projects"
-      className="py-32 px-6 lg:px-12 border-t border-border"
+      className="py-32 border-t border-border"
       aria-label="Projects"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <SectionHeader label="Work" title="Selected projects" number="03" />
+      </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {/* Horizontal scroll track — bleeds to edge */}
+      <div className="relative">
+        <div
+          className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 px-6 lg:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {projects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} index={i} />
           ))}
-          <MoreToComePlaceholder index={projects.length} />
+          <MoreToComePlaceholder />
         </div>
+
+        {/* Fade hint on right edge */}
+        <div className="pointer-events-none absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-[#0f0f0f] to-transparent" />
       </div>
     </motion.section>
   );
