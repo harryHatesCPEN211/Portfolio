@@ -145,10 +145,7 @@ export function About() {
           >
             <div className="space-y-4 text-gray-200 leading-relaxed">
               <p>
-                If I&apos;m being honest, I didn&apos;t even know what a PCB was before starting my second year of Electrical Engineering. But once I designed my first one, I could never look at a messy breadboard the same way again.
-              </p>
-              <p>
-                What started as a steep learning curve quickly turned into a passion for hardware design. My sweet spot is owning the entire circuit lifecycle: taking a concept from LTspice and Altium layouts all the way to a fully tested, multi-layer board. I don&apos;t just route traces—I engineer around physical limits. Whether I&apos;m isolating a noisy power rail, tuning gate driver dead-time to prevent shoot-through, or packaging it all into a tight form factor, solving complex problems within physical constraints is what I do best.
+                My sweet spot is owning the entire circuit lifecycle: taking a concept from LTspice and Altium layouts all the way to a fully tested, multi-layer board. I don&apos;t just route traces—I engineer around physical limits. Whether I&apos;m isolating a noisy power rail, tuning gate driver dead-time to prevent shoot-through, or packaging it all into a tight form factor, solving complex problems within physical constraints is what I do best.
               </p>
             </div>
 
