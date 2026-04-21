@@ -53,6 +53,23 @@ export function Hero() {
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-start gap-16 py-20">
         {/* Text */}
         <div className="flex-1 min-w-0 text-center md:text-left">
+          {/* UBC logo — mobile only, above the subtitle */}
+          <motion.div
+            {...fadeUp(0.05)}
+            className="flex justify-center mb-5 md:hidden"
+          >
+            <div className="relative w-14 h-14">
+              <Image
+                src="/images/ubc-logo-transparent.png"
+                alt="UBC"
+                fill
+                className="object-contain"
+                style={{ filter: "brightness(0) invert(1)" }}
+                sizes="56px"
+              />
+            </div>
+          </motion.div>
+
           <motion.p
             {...fadeUp(0.1)}
             className="text-xs font-mono tracking-[0.25em] uppercase text-accent-light mb-6"
