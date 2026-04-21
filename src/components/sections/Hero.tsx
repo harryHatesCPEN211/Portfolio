@@ -102,9 +102,9 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-shrink-0 hidden sm:block mt-1 md:ml-auto md:mr-8"
+          className="flex-shrink-0 flex justify-center mt-2 md:mt-1 md:ml-auto md:mr-8"
         >
-          <div className="relative w-64 h-80 md:w-80 md:h-[420px]">
+          <div className="relative w-52 h-64 sm:w-64 sm:h-80 md:w-80 md:h-[420px]">
             {/* Teal border frame */}
             <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-accent-light/60 to-accent/30" />
             <div className="relative w-full h-full rounded-xl overflow-hidden">

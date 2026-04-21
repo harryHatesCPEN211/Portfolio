@@ -23,29 +23,29 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       }`}
     >
       {/* Image */}
-      <div className={`relative bg-surface-2 overflow-hidden flex-shrink-0 ${isFeatured ? "h-72 sm:h-96" : "h-52"}`}>
+      <div className={`relative bg-surface-2 overflow-hidden flex-shrink-0 ${isFeatured ? "h-72 sm:h-96" : project.imageRight ? "h-64 sm:h-52" : "h-52"}`}>
         {project.imageRight ? (
-          /* Split layout */
-          <div className="absolute inset-0 flex">
-            <div className="relative w-1/2 h-full border-r border-border">
+          /* Split layout — stacks vertically on mobile, side by side on sm+ */
+          <div className="absolute inset-0 flex flex-col sm:flex-row">
+            <div className="relative w-full sm:w-1/2 h-1/2 sm:h-full border-b sm:border-b-0 sm:border-r border-border">
               {project.image && (
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className={`${project.imageFit === "contain" ? "object-contain p-1" : "object-cover group-hover:scale-[1.03]"} transition-transform duration-300`}
-                  sizes="50vw"
+                  sizes="(max-width: 640px) 100vw, 50vw"
                   priority={isFeatured}
                 />
               )}
             </div>
-            <div className={`relative w-1/2 h-full ${project.imageRightFit === "cover" ? "" : "bg-white"}`}>
+            <div className={`relative w-full sm:w-1/2 h-1/2 sm:h-full ${project.imageRightFit === "cover" ? "" : "bg-white"}`}>
               <Image
                 src={project.imageRight}
                 alt=""
                 fill
                 className={`${project.imageRightFit === "cover" ? "object-cover group-hover:scale-[1.03]" : "object-contain p-6"} transition-transform duration-300`}
-                sizes="50vw"
+                sizes="(max-width: 640px) 100vw, 50vw"
               />
             </div>
           </div>
