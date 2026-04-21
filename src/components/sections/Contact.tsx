@@ -226,7 +226,7 @@ export function Contact() {
           <img
             src="/images/projects/thumbs_up.jpg"
             alt="Harry giving a thumbs up"
-            className="w-full h-64 sm:h-80 lg:h-[520px] lg:w-auto object-contain rounded-xl"
+            className="w-full h-80 sm:h-96 lg:h-[520px] lg:w-auto object-contain rounded-xl"
           />
         </motion.div>
 
