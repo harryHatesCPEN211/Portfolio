@@ -126,19 +126,14 @@ export function Projects() {
         <SectionHeader label="Work" title="Selected projects" number="03" />
       </div>
 
-      {/* Horizontal scroll track — bleeds to edge */}
-      <div className="relative">
-        <div
-          className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 px-6 lg:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
+      {/* Horizontal scroll track — centered, scrollable on small screens */}
+      <div className="relative overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-5 snap-x snap-mandatory pb-4 px-6 lg:px-12 justify-center min-w-fit mx-auto">
           {projects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} index={i} />
           ))}
           <MoreToComePlaceholder />
         </div>
-
-        {/* Fade hint on right edge */}
-        <div className="pointer-events-none absolute top-0 right-0 h-full w-16 bg-gradient-to-l from-[#0f0f0f] to-transparent" />
       </div>
     </motion.section>
   );
