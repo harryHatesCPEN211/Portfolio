@@ -23,6 +23,7 @@ export function About() {
           className="object-cover object-[center_40%]"
           style={{ transform: "scaleX(-1)" }}
           sizes="100vw"
+          quality={90}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-black/70" />
