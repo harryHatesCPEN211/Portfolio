@@ -17,11 +17,10 @@ export function About() {
       {/* Background — flipped so Harry is on the left, open vista on the right */}
       <div className="absolute inset-0 -z-10">
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 [background-position:right_40%] md:[background-position:center_40%]"
           style={{
             backgroundImage: "url('/images/mountain.jpg')",
             backgroundSize: "cover",
-            backgroundPosition: "center 40%",
             transform: "scaleX(-1)",
           }}
           aria-hidden="true"

@@ -179,17 +179,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <CollapsibleText text={project.description} />
           </div>
 
-          {/* Table of contents */}
-          <nav aria-label="Page sections" className="mb-12 flex flex-wrap gap-2">
-            {project.problem    && <a href="#problem"    className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Problem</a>}
-            {project.approach   && <a href="#approach"   className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Approach</a>}
-            {project.outcome    && <a href="#outcome"    className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Outcome</a>}
-            {project.challenges && <a href="#challenges" className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Challenges</a>}
-            {project.gallery    && <a href="#gallery"    className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Gallery</a>}
-            {project.techSpecs  && <a href="#specs"      className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Specs</a>}
-            {(project.pcbBoards || project.pcbDetails) && <a href="#pcb" className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">PCB Details</a>}
-          </nav>
-
           {/* 3D Viewers */}
           {project.models && project.models.length > 0 ? (
             <div className={`mb-12 grid gap-4 ${project.models.length > 1 ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"}`}>
