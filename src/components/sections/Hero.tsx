@@ -50,7 +50,7 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-start gap-16 py-20">
+      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center md:items-start gap-16 pt-8 pb-20 md:py-20">
         {/* Text */}
         <div className="flex-1 min-w-0 text-center md:text-left">
           {/* UBC logo — mobile only, above the subtitle */}
