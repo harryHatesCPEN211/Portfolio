@@ -20,12 +20,12 @@ export function About() {
           src="/images/mountain.jpg"
           alt=""
           fill
-          className="object-cover object-center"
+          className="object-cover object-[center_40%]"
           style={{ transform: "scaleX(-1)" }}
           sizes="100vw"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-black/72" />
+        <div className="absolute inset-0 bg-black/55 lg:bg-black/72" />
         {/* Location tag */}
         <div className="absolute bottom-6 right-6 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1.5">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-accent-light flex-shrink-0">

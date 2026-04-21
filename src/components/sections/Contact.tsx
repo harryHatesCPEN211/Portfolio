@@ -221,12 +221,12 @@ export function Contact() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="hidden lg:block"
+          className="lg:block"
         >
           <img
             src="/images/projects/thumbs_up.jpg"
             alt="Harry giving a thumbs up"
-            className="h-[520px] w-auto object-cover rounded-xl"
+            className="w-full h-64 sm:h-80 lg:h-[520px] lg:w-auto object-cover rounded-xl"
           />
         </motion.div>
 

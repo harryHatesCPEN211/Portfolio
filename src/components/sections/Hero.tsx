@@ -115,7 +115,7 @@ export function Hero() {
                 className="object-cover"
                 style={{ objectPosition: "50% 70%" }}
                 priority
-                sizes="(max-width: 768px) 0px, 320px"
+                sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, 320px"
               />
             </div>
             {/* Corner accent */}
