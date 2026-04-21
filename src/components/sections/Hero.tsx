@@ -31,8 +31,8 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      {/* UBC logo background */}
-      <div className="absolute inset-0 -z-10" aria-hidden="true">
+      {/* UBC logo background — desktop only */}
+      <div className="absolute inset-0 -z-10 hidden md:block" aria-hidden="true">
         <Image
           src="/images/ubc-logo-transparent.png"
           alt=""
