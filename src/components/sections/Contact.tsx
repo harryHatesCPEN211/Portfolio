@@ -78,7 +78,7 @@ export function Contact() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             >
-              <SectionHeader label="Contact" title="Let's work together" />
+              <SectionHeader label="Contact" title="Let's work together" className="text-center lg:text-left" />
 
               <p className="text-gray-300 leading-relaxed mb-10 -mt-4">
                 I&apos;m currently open to co-op and full-time roles in embedded
@@ -86,7 +86,7 @@ export function Contact() {
                 or opportunity, I&apos;d love to hear about it.
               </p>
 
-              <ul className="space-y-6" role="list">
+              <ul className="space-y-6 text-center lg:text-left" role="list">
                 {socials.map((s) => (
                   <li key={s.label}>
                     <p className="text-xs font-mono tracking-[0.2em] uppercase text-gray-500 mb-1">

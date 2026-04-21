@@ -16,7 +16,7 @@ export function SectionHeader({ label, title, className }: SectionHeaderProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-      className={cn("mb-16", className)}
+      className={cn("mb-16 text-center md:text-left", className)}
     >
       <p className="text-xs font-mono tracking-[0.2em] uppercase text-accent-light mb-3">
         {label}

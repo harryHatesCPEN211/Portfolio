@@ -24,7 +24,7 @@ export function Resume() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
           >
-            <div className="space-y-8 mb-10">
+            <div className="space-y-8 mb-10 text-center lg:text-left">
               <div>
                 <p className="text-xs font-mono tracking-[0.2em] uppercase text-gray-500 mb-3">Education</p>
                 <p className="text-sm font-mono text-cream">University of British Columbia</p>
@@ -50,7 +50,7 @@ export function Resume() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <Button href="/resume.pdf" external variant="fill" size="lg">
                 Download PDF
               </Button>

@@ -52,7 +52,7 @@ export function Hero() {
 
       <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-start gap-16 py-20">
         {/* Text */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 text-center md:text-left">
           <motion.p
             {...fadeUp(0.1)}
             className="text-xs font-mono tracking-[0.25em] uppercase text-accent-light mb-6"
@@ -80,7 +80,7 @@ export function Hero() {
 
           <motion.div
             {...fadeUp(0.45)}
-            className="flex flex-wrap gap-4"
+            className="flex flex-wrap gap-4 justify-center md:justify-start"
           >
             <Button href="#projects" variant="fill" size="lg">
               View Projects
