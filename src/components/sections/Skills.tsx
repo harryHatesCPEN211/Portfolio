@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { skillCategories } from "@/data/skills";
 import { cn } from "@/lib/utils";
@@ -13,7 +14,7 @@ function ProficiencyDots({ level }: { level: number }) {
           key={i}
           className={cn(
             "block w-1.5 h-1.5 rounded-full transition-colors",
-            i < level ? "bg-accent-light" : "bg-surface-2 border border-border"
+            i < level ? "bg-accent-light" : "bg-white/10 border border-white/20"
           )}
         />
       ))}
@@ -25,13 +26,27 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="py-32 px-6 lg:px-12 border-t border-border"
+      className="relative py-32 px-6 lg:px-12 border-t border-border overflow-hidden"
       aria-label="Skills"
     >
+      {/* Altium screenshot background */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/images/altium-bg.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-black/80" />
+      </div>
+
       <div className="max-w-7xl mx-auto">
         <SectionHeader label="Skills" title="What I work with" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Cards — glass style so the PCB bleeds through */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {skillCategories.map((category, ci) => (
             <motion.div
               key={category.name}
@@ -43,9 +58,9 @@ export function Skills() {
                 delay: ci * 0.1,
                 ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
               }}
-              className="bg-surface border border-border rounded-card p-6"
+              className="bg-black/50 backdrop-blur-md border border-white/10 rounded-card p-6"
             >
-              <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-accent-light mb-6">
+              <h3 className="font-mono text-sm tracking-[0.15em] uppercase text-accent-light mb-6">
                 {category.name}
               </h3>
 
@@ -63,7 +78,7 @@ export function Skills() {
                     }}
                     className="flex items-center justify-between gap-4"
                   >
-                    <span className="text-sm font-mono text-gray-300">
+                    <span className="text-sm font-mono text-gray-200">
                       {skill.name}
                     </span>
                     <ProficiencyDots level={skill.level} />
@@ -80,7 +95,7 @@ export function Skills() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-xs font-mono text-gray-600 text-center mt-8"
+          className="text-xs font-mono text-gray-500 text-center mt-8"
         >
           Dots indicate relative proficiency — 5 = primary tool, 1 = familiar
         </motion.p>

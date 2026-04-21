@@ -33,7 +33,31 @@
       "Bash(pnpm build:*)",
       "Bash(pnpm dev:*)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
-      "Bash(node -e ':)"
+      "Bash(node -e ':)",
+      "Bash(python -c \"import cadquery\")",
+      "Bash(python -c \"import trimesh\")",
+      "Bash(python -c \"import OCC\")",
+      "Bash(where freecad:*)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(node:*)",
+      "Bash(ls C:/Portfolio/node_modules/.pnpm/three*/node_modules/three/examples/jsm/loaders/)",
+      "Bash(ls:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(curl:*)",
+      "Bash(taskkill /PID 1192 /F)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(cmd /c \"taskkill /PID 1192 /F\")",
+      "Bash(cmd /c \"taskkill /F /IM node.exe\")",
+      "Bash(cmd:*)",
+      "Bash(powershell:*)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(npx tsc:*)",
+      "Bash(taskkill *)",
+      "PowerShell(Stop-Process *)",
+      "Bash(pnpm next *)",
+      "Bash(git add *)"
     ]
   }
 }

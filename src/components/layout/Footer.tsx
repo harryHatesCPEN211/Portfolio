@@ -6,7 +6,7 @@ export function Footer() {
           © {new Date().getFullYear()} Harry Nguyen
         </p>
         <p className="text-xs font-mono text-gray-600">
-          Mechatronics Engineering · Simon Fraser University
+          Electrical Engineering · University of British Columbia
         </p>
       </div>
     </footer>

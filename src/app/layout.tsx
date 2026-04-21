@@ -18,13 +18,13 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Harry Nguyen — Mechatronics Engineer",
+  title: "Harry Nguyen — Electrical Engineering Student",
   description:
-    "Portfolio of Harry Nguyen, a mechatronics engineer specializing in embedded systems, PCB design, and robotics.",
+    "Portfolio of Harry Nguyen, a 3rd-year Electrical Engineering student at UBC specializing in PCB design, circuit analysis, and embedded systems.",
   openGraph: {
-    title: "Harry Nguyen — Mechatronics Engineer",
+    title: "Harry Nguyen — Electrical Engineering Student",
     description:
-      "Embedded systems, PCB design, and robotics. Simon Fraser University.",
+      "PCB design, circuit analysis, and embedded systems. University of British Columbia.",
     type: "website",
   },
 };

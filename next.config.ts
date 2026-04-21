@@ -11,6 +11,16 @@ const nextConfig: NextConfig = {
 
   // Required for React Three Fiber
   transpilePackages: ["three"],
+
+  // CORS headers so viewer.diagrams.net can fetch .drawio files from both localhost and production
+  async headers() {
+    return [
+      {
+        source: "/models/:path*",
+        headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

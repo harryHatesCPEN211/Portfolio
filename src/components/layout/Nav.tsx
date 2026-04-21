@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const links = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
-  { label: "Resume", href: "#resume" },
+  { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -17,6 +16,9 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("");
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30, restDelta: 0.001 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -61,6 +63,12 @@ export function Nav() {
             : "bg-transparent"
         )}
       >
+        {/* Scroll progress bar */}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent-light origin-left"
+          style={{ scaleX }}
+        />
+
         <nav
           className="max-w-7xl mx-auto px-6 lg:px-12 h-16 flex items-center justify-between"
           aria-label="Main navigation"

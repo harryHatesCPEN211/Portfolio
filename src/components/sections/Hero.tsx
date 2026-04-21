@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 
+
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const fadeUp = (delay = 0) => ({
@@ -30,20 +31,33 @@ export function Hero() {
         aria-hidden="true"
       />
 
+      {/* UBC logo background */}
+      <div className="absolute inset-0 -z-10" aria-hidden="true">
+        <Image
+          src="/images/ubc-logo-transparent.png"
+          alt=""
+          fill
+          className="object-contain object-center"
+          style={{ filter: "brightness(0) invert(1)" }}
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/88" />
+      </div>
+
       {/* Accent glow */}
       <div
         className="absolute top-1/3 -left-32 w-96 h-96 rounded-full bg-accent/10 blur-[120px] pointer-events-none"
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-16 py-20">
+      <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-start gap-16 py-20">
         {/* Text */}
         <div className="flex-1 min-w-0">
           <motion.p
             {...fadeUp(0.1)}
             className="text-xs font-mono tracking-[0.25em] uppercase text-accent-light mb-6"
           >
-            Mechatronics Engineer
+            3rd-year Electrical Engineering Student
           </motion.p>
 
           <motion.h1
@@ -59,9 +73,9 @@ export function Hero() {
             {...fadeUp(0.35)}
             className="text-gray-300 max-w-md leading-relaxed mb-10 text-base"
           >
-            I design circuits that don&apos;t fail and robots that move precisely.
-            Embedded systems, PCB design, and motor control — from schematic to
-            soldered board.
+            Hey, I&apos;m Harry, a third-year EE student at UBC. I&apos;m super into hardware and PCB design, and I love taking projects from the &ldquo;staring at datasheets for hours&rdquo; phase all the way to building electronics that actually work.
+            <br /><br />
+            I can also change your light-bulb too, if you asked me nicely.
           </motion.p>
 
           <motion.div
@@ -73,9 +87,10 @@ export function Hero() {
             </Button>
             <Button
               href="/resume.pdf"
-              variant="outline"
+              variant="fill"
               size="lg"
               external
+              className="bg-accent-light text-black border-accent-light hover:bg-accent-light/80 hover:border-accent-light/80"
             >
               Download Resume
             </Button>
@@ -87,19 +102,20 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-shrink-0 hidden sm:block"
+          className="flex-shrink-0 hidden sm:block mt-1 md:ml-auto md:mr-8"
         >
-          <div className="relative w-56 h-72 md:w-64 md:h-80">
+          <div className="relative w-64 h-80 md:w-80 md:h-[420px]">
             {/* Teal border frame */}
             <div className="absolute -inset-1 rounded-xl bg-gradient-to-br from-accent-light/60 to-accent/30" />
             <div className="relative w-full h-full rounded-xl overflow-hidden">
               <Image
-                src="/images/profile.jpg"
+                src="/images/projects/new_pfp.JPG"
                 alt="Harry Nguyen"
                 fill
-                className="object-cover object-top"
+                className="object-cover"
+                style={{ objectPosition: "50% 70%" }}
                 priority
-                sizes="(max-width: 768px) 0px, 256px"
+                sizes="(max-width: 768px) 0px, 320px"
               />
             </div>
             {/* Corner accent */}

@@ -11,13 +11,13 @@ type Status = "idle" | "loading" | "success" | "error";
 const socials = [
   {
     label: "Email",
-    value: "harry@example.com",
-    href: "mailto:harry@example.com",
+    value: "harrynguyen13092005@gmail.com",
+    href: "mailto:harrynguyen13092005@gmail.com",
   },
   {
     label: "LinkedIn",
-    value: "linkedin.com/in/harrynguyen",
-    href: "https://linkedin.com/in/harrynguyen",
+    value: "linkedin.com/in/harry-nguyen13",
+    href: "https://linkedin.com/in/harry-nguyen13",
   },
 ];
 
@@ -57,50 +57,62 @@ export function Contact() {
     "w-full bg-surface border border-border rounded px-4 py-3 text-sm font-mono text-cream placeholder:text-gray-600 focus:outline-none focus:border-accent-light transition-colors duration-150";
 
   return (
-    <section
+    <motion.section
       id="contact"
       className="py-32 px-6 lg:px-12 border-t border-border"
       aria-label="Contact"
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left */}
-          <div>
-            <SectionHeader label="Contact" title="Let's work together" />
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 items-start">
 
-            <p className="text-gray-300 leading-relaxed mb-10 -mt-4">
-              I&apos;m currently open to co-op and full-time roles in embedded
-              systems, hardware engineering, and robotics. If you have a project
-              or opportunity, I&apos;d love to hear about it.
-            </p>
+        {/* Left — all content */}
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Header + socials */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+            >
+              <SectionHeader label="Contact" title="Let's work together" />
 
-            <ul className="space-y-6" role="list">
-              {socials.map((s) => (
-                <li key={s.label}>
-                  <p className="text-xs font-mono tracking-[0.2em] uppercase text-gray-500 mb-1">
-                    {s.label}
-                  </p>
-                  <a
-                    href={s.href}
-                    className="text-sm font-mono text-cream hover:text-accent-light transition-colors duration-150"
-                    {...(s.href.startsWith("http")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                  >
-                    {s.value}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <p className="text-gray-300 leading-relaxed mb-10 -mt-4">
+                I&apos;m currently open to co-op and full-time roles in embedded
+                systems, hardware engineering, and robotics. If you have a project
+                or opportunity, I&apos;d love to hear about it.
+              </p>
 
-          {/* Right — form */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          >
+              <ul className="space-y-6" role="list">
+                {socials.map((s) => (
+                  <li key={s.label}>
+                    <p className="text-xs font-mono tracking-[0.2em] uppercase text-gray-500 mb-1">
+                      {s.label}
+                    </p>
+                    <a
+                      href={s.href}
+                      className="text-sm font-mono text-cream hover:text-accent-light transition-colors duration-150"
+                      {...(s.href.startsWith("http")
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                    >
+                      {s.value}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+            >
             <form
               onSubmit={handleSubmit}
               noValidate
@@ -199,9 +211,26 @@ export function Contact() {
                 </motion.p>
               )}
             </form>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
+
+        {/* Right — photo */}
+        <motion.div
+          initial={{ opacity: 0, x: 24 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          className="hidden lg:block"
+        >
+          <img
+            src="/images/projects/thumbs_up.jpg"
+            alt="Harry giving a thumbs up"
+            className="h-[520px] w-auto object-cover rounded-xl"
+          />
+        </motion.div>
+
       </div>
-    </section>
+    </motion.section>
   );
 }
