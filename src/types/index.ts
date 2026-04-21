@@ -4,7 +4,7 @@ export interface ProjectModel {
 }
 
 export interface GalleryItem {
-  type: "image" | "video";
+  type: "image" | "video" | "youtube";
   src: string;
   caption: string;
   group: string;

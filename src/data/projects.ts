@@ -67,14 +67,14 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        type: "video",
-        src: "/images/projects/Greensleeves_demo.MOV",
+        type: "youtube",
+        src: "https://www.youtube.com/embed/57-NtPN3RAc",
         caption: "Demo — Greensleeves",
         group: "Demo",
       },
       {
-        type: "video",
-        src: "/images/projects/imperial_march_robot.mp4",
+        type: "youtube",
+        src: "https://www.youtube.com/embed/lCqeWlC3jUU",
         caption: "Demo — Imperial March",
         group: "Demo",
       },

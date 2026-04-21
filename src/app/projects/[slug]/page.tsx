@@ -16,12 +16,12 @@ import { DiagramViewer } from "@/components/viewer/DiagramViewer";
 // ── Gallery ───────────────────────────────────────────────────────────────────
 
 function GallerySection({ items }: { items: GalleryItem[] }) {
-  const videos = items.filter((i) => i.type === "video");
+  const videos = items.filter((i) => i.type === "video" || i.type === "youtube");
 
   // Group non-video items by their group field, preserving insertion order
   const groups: Record<string, GalleryItem[]> = {};
   for (const item of items) {
-    if (item.type === "video") continue;
+    if (item.type === "video" || item.type === "youtube") continue;
     if (!groups[item.group]) groups[item.group] = [];
     groups[item.group].push(item);
   }
@@ -44,12 +44,22 @@ function GallerySection({ items }: { items: GalleryItem[] }) {
                 {video.caption}
               </p>
               <div className="relative w-full rounded-card overflow-hidden bg-black border border-border aspect-video">
-                <video
-                  src={video.src}
-                  controls
-                  playsInline
-                  className="w-full h-full object-contain"
-                />
+                {video.type === "youtube" ? (
+                  <iframe
+                    src={video.src}
+                    title={video.caption}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                ) : (
+                  <video
+                    src={video.src}
+                    controls
+                    playsInline
+                    className="w-full h-full object-contain"
+                  />
+                )}
               </div>
             </div>
           ))}
