@@ -103,7 +103,7 @@ export function Hero() {
               View Projects
             </Button>
             <Button
-              href="/resume.pdf"
+              href="/COOP_resume_revision_v2.pdf"
               variant="fill"
               size="lg"
               external

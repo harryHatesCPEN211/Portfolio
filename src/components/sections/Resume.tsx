@@ -51,10 +51,10 @@ export function Resume() {
             </div>
 
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <Button href="/resume.pdf" external variant="fill" size="lg">
+              <Button href="/COOP_resume_revision_v2.pdf" external variant="fill" size="lg">
                 Download PDF
               </Button>
-              <Button href="/resume.pdf" external variant="outline" size="lg">
+              <Button href="/COOP_resume_revision_v2.pdf" external variant="outline" size="lg">
                 View in browser
               </Button>
             </div>
