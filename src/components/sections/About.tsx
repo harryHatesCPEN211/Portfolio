@@ -16,14 +16,14 @@ export function About() {
     >
       {/* Background — flipped so Harry is on the left, open vista on the right */}
       <div className="absolute inset-0 -z-10">
-        <Image
-          src="/images/mountain.jpg"
-          alt=""
-          fill
-          className="object-cover object-[center_40%]"
-          style={{ transform: "scaleX(-1)" }}
-          sizes="100vw"
-          quality={90}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "url('/images/mountain.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center 40%",
+            transform: "scaleX(-1)",
+          }}
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-black/70" />
