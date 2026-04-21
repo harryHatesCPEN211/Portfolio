@@ -78,7 +78,7 @@ export function Contact() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
             >
-              <SectionHeader label="Contact" title="Let's work together" className="text-center lg:text-left" />
+              <SectionHeader label="Contact" title="Let's work together" number="04" className="text-center lg:text-left" />
 
               <p className="text-gray-300 leading-relaxed mb-10 -mt-4">
                 I&apos;m currently open to co-op and full-time roles in embedded

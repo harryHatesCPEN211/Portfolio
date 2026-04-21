@@ -43,7 +43,7 @@ export function Skills() {
       </div>
 
       <div className="max-w-7xl mx-auto">
-        <SectionHeader label="Skills" title="What I work with" />
+        <SectionHeader label="Skills" title="What I work with" number="02" />
 
         {/* Cards — glass style so the PCB bleeds through */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

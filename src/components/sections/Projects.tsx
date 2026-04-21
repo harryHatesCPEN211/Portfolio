@@ -133,7 +133,7 @@ export function Projects() {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="max-w-7xl mx-auto">
-        <SectionHeader label="Work" title="Selected projects" />
+        <SectionHeader label="Work" title="Selected projects" number="03" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {projects.map((project, i) => (

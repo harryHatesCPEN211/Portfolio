@@ -6,6 +6,7 @@ import { projects } from "@/data/projects";
 import type { GalleryItem } from "@/types";
 import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
+import { CollapsibleText } from "@/components/ui/CollapsibleText";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { ModelViewer } from "@/components/viewer/ModelViewer";
@@ -163,7 +164,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </div>
 
           {/* Description */}
-          <p className="text-lg text-gray-200 mb-12 leading-relaxed">{project.description}</p>
+          <div className="mb-8">
+            <CollapsibleText text={project.description} />
+          </div>
+
+          {/* Table of contents */}
+          <nav aria-label="Page sections" className="mb-12 flex flex-wrap gap-2">
+            {project.problem    && <a href="#problem"    className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Problem</a>}
+            {project.approach   && <a href="#approach"   className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Approach</a>}
+            {project.outcome    && <a href="#outcome"    className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Outcome</a>}
+            {project.challenges && <a href="#challenges" className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Challenges</a>}
+            {project.gallery    && <a href="#gallery"    className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Gallery</a>}
+            {project.techSpecs  && <a href="#specs"      className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">Specs</a>}
+            {(project.pcbBoards || project.pcbDetails) && <a href="#pcb" className="text-[11px] font-mono tracking-wide text-gray-400 hover:text-accent-light border border-border hover:border-accent/40 rounded px-3 py-1.5 transition-colors duration-150">PCB Details</a>}
+          </nav>
 
           {/* 3D Viewers */}
           {project.models && project.models.length > 0 ? (
@@ -191,43 +205,52 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           ) : null}
 
-          {/* Gallery (top position — skipped if galleryInline) */}
-          {project.gallery && !project.galleryInline && (
-            project.gallery.length > 0 ? (
-              <GallerySection items={project.gallery} />
-            ) : (
-              <section className="mb-12">
-                <h2 className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5">
-                  Gallery
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {[0, 1].map((i) => (
-                    <div
-                      key={i}
-                      className="aspect-video rounded-card border border-dashed border-border bg-surface flex items-center justify-center"
-                    >
-                      <span className="text-xs font-mono text-gray-600 tracking-widest uppercase">
-                        Photos coming soon
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )
-          )}
 
           {/* Case study */}
           <div className="space-y-12 text-gray-300 leading-relaxed">
 
-            {/* YouTube embed */}
+            {/* ── Interesting first ── */}
+
+            {project.problem && (
+              <section id="problem" aria-labelledby="problem-heading">
+                <h2 id="problem-heading" className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">The Problem</h2>
+                <p>{project.problem}</p>
+              </section>
+            )}
+
+            {project.approach && (
+              <section id="approach" aria-labelledby="approach-heading">
+                <h2 id="approach-heading" className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">My Approach</h2>
+                <p>{project.approach}</p>
+              </section>
+            )}
+
+            {project.outcome && (
+              <section id="outcome" aria-labelledby="outcome-heading">
+                <h2 id="outcome-heading" className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">Outcome</h2>
+                <p className="text-cream">{project.outcome}</p>
+              </section>
+            )}
+
+            {project.challenges && project.challenges.length > 0 && (
+              <section id="challenges" aria-labelledby="challenges-heading">
+                <h2 id="challenges-heading" className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5">Engineering Challenges Solved</h2>
+                <div className="space-y-4">
+                  {project.challenges.map((c) => (
+                    <div key={c.title} className="border border-border rounded-card p-5 bg-surface">
+                      <p className="font-mono text-xs text-accent-light tracking-wide mb-2">{c.title}</p>
+                      <p className="text-sm text-gray-300 leading-relaxed">{c.detail}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* ── Visual / media ── */}
+
             {project.youtubeUrl && (
               <section aria-labelledby="video-heading">
-                <h2
-                  id="video-heading"
-                  className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4"
-                >
-                  Demo
-                </h2>
+                <h2 id="video-heading" className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">Demo</h2>
                 <div className="relative w-full aspect-video rounded-card overflow-hidden border border-border">
                   <iframe
                     src={project.youtubeUrl}
@@ -240,88 +263,53 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </section>
             )}
 
-            {/* Inline gallery (below demo, only when galleryInline) */}
-            {project.gallery && project.galleryInline && (
-              project.gallery.length > 0 ? (
-                <GallerySection items={project.gallery} />
-              ) : (
-                <section className="mb-0">
-                  <h2 className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5">
-                    Gallery
-                  </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {[0, 1].map((i) => (
-                      <div
-                        key={i}
-                        className="aspect-video rounded-card border border-dashed border-border bg-surface flex items-center justify-center"
-                      >
-                        <span className="text-xs font-mono text-gray-600 tracking-widest uppercase">
-                          Photos coming soon
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              )
-            )}
-
-            {/* Team photo */}
-            {project.teamPhoto && (
-              <figure className="space-y-3">
-                <div className="relative w-full rounded-card overflow-hidden border border-border">
-                  <Image
-                    src={project.teamPhoto}
-                    alt="Project team"
-                    width={1200}
-                    height={800}
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-                {project.teamCaption && (
-                  <figcaption className="text-xs font-mono text-gray-500 leading-relaxed">
-                    {project.teamCaption}
-                  </figcaption>
-                )}
-              </figure>
-            )}
-
-            {(project.systemArchitecture || project.diagram) && (
-              <section aria-labelledby="arch-heading">
-                <h2
-                  id="arch-heading"
-                  className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4"
-                >
-                  System Architecture
-                </h2>
-                {project.diagram && (
-                  <DiagramViewer filePath={project.diagram} title="Full System Block Diagram" />
-                )}
-                {project.systemArchitecture && (
-                  <p className="mt-6 text-sm text-gray-300 leading-relaxed">{project.systemArchitecture}</p>
+            {project.gallery && (
+              <section id="gallery">
+                {project.gallery.length > 0 ? (
+                  <GallerySection items={project.gallery} />
+                ) : (
+                  <>
+                    <h2 className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5">Gallery</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {[0, 1].map((i) => (
+                        <div key={i} className="aspect-video rounded-card border border-dashed border-border bg-surface flex items-center justify-center">
+                          <span className="text-xs font-mono text-gray-600 tracking-widest uppercase">Photos coming soon</span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
                 )}
               </section>
             )}
 
-            {/* Technical Specifications */}
+            {project.teamPhoto && (
+              <figure className="space-y-3">
+                <div className="relative w-full rounded-card overflow-hidden border border-border">
+                  <Image src={project.teamPhoto} alt="Project team" width={1200} height={800} className="w-full h-auto object-cover" />
+                </div>
+                {project.teamCaption && (
+                  <figcaption className="text-xs font-mono text-gray-500 leading-relaxed">{project.teamCaption}</figcaption>
+                )}
+              </figure>
+            )}
+
+            {/* ── Technical details (for those who want them) ── */}
+
+            {(project.systemArchitecture || project.diagram) && (
+              <section aria-labelledby="arch-heading">
+                <h2 id="arch-heading" className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4">System Architecture</h2>
+                {project.diagram && <DiagramViewer filePath={project.diagram} title="Full System Block Diagram" />}
+                {project.systemArchitecture && <p className="mt-6 text-sm text-gray-300 leading-relaxed">{project.systemArchitecture}</p>}
+              </section>
+            )}
+
             {project.techSpecs && project.techSpecs.length > 0 && (
-              <section aria-labelledby="specs-heading">
-                <h2
-                  id="specs-heading"
-                  className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5"
-                >
-                  Technical Specifications
-                </h2>
+              <section id="specs" aria-labelledby="specs-heading">
+                <h2 id="specs-heading" className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5">Technical Specifications</h2>
                 <div className="border border-border rounded-card overflow-hidden">
                   {project.techSpecs.map((spec, i) => (
-                    <div
-                      key={spec.label}
-                      className={`grid grid-cols-[auto_1fr] gap-6 px-5 py-3 ${
-                        i % 2 === 0 ? "bg-surface" : "bg-surface-2/40"
-                      }`}
-                    >
-                      <span className="font-mono text-xs text-gray-500 whitespace-nowrap pt-0.5">
-                        {spec.label}
-                      </span>
+                    <div key={spec.label} className={`grid grid-cols-[auto_1fr] gap-6 px-5 py-3 ${i % 2 === 0 ? "bg-surface" : "bg-surface-2/40"}`}>
+                      <span className="font-mono text-xs text-gray-500 whitespace-nowrap pt-0.5">{spec.label}</span>
                       <span className="text-sm text-gray-200">{spec.value}</span>
                     </div>
                   ))}
@@ -329,23 +317,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </section>
             )}
 
-            {/* PCB Details */}
             {(project.pcbBoards || project.pcbDetails) && (
-              <section aria-labelledby="pcb-heading">
-                <h2
-                  id="pcb-heading"
-                  className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5"
-                >
-                  PCB Details
-                </h2>
-
+              <section id="pcb" aria-labelledby="pcb-heading">
+                <h2 id="pcb-heading" className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5">PCB Details</h2>
                 {project.pcbBoards ? (
                   <div className="space-y-6">
                     {project.pcbBoards.map((board) => (
                       <div key={board.label} className="border border-border rounded-card p-5 bg-surface">
-                        <p className="font-mono text-xs text-accent-light tracking-wide mb-3">
-                          {board.label}
-                        </p>
+                        <p className="font-mono text-xs text-accent-light tracking-wide mb-3">{board.label}</p>
                         <ul className="space-y-2">
                           {board.details.map((item, i) => (
                             <li key={i} className="flex gap-3 text-sm text-gray-300 leading-relaxed">
@@ -367,67 +346,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     ))}
                   </ul>
                 )}
-              </section>
-            )}
-
-            {project.problem && (
-              <section aria-labelledby="problem-heading">
-                <h2
-                  id="problem-heading"
-                  className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4"
-                >
-                  The Problem
-                </h2>
-                <p>{project.problem}</p>
-              </section>
-            )}
-
-            {project.approach && (
-              <section aria-labelledby="approach-heading">
-                <h2
-                  id="approach-heading"
-                  className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4"
-                >
-                  My Approach
-                </h2>
-                <p>{project.approach}</p>
-              </section>
-            )}
-
-            {project.outcome && (
-              <section aria-labelledby="outcome-heading">
-                <h2
-                  id="outcome-heading"
-                  className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-4"
-                >
-                  Outcome
-                </h2>
-                <p className="text-cream">{project.outcome}</p>
-              </section>
-            )}
-
-            {/* Engineering Challenges */}
-            {project.challenges && project.challenges.length > 0 && (
-              <section aria-labelledby="challenges-heading">
-                <h2
-                  id="challenges-heading"
-                  className="font-mono text-xs tracking-[0.2em] uppercase text-gray-500 mb-5"
-                >
-                  Engineering Challenges Solved
-                </h2>
-                <div className="space-y-4">
-                  {project.challenges.map((c) => (
-                    <div
-                      key={c.title}
-                      className="border border-border rounded-card p-5 bg-surface"
-                    >
-                      <p className="font-mono text-xs text-accent-light tracking-wide mb-2">
-                        {c.title}
-                      </p>
-                      <p className="text-sm text-gray-300 leading-relaxed">{c.detail}</p>
-                    </div>
-                  ))}
-                </div>
               </section>
             )}
           </div>
