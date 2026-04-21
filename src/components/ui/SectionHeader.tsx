@@ -21,7 +21,7 @@ export function SectionHeader({ label, title, number, className }: SectionHeader
     >
       <div className="flex items-center gap-3 justify-center md:justify-start mb-3">
         {number && (
-          <span className="text-[10px] font-mono text-gray-600 tracking-widest">{number}</span>
+          <span className="text-[10px] font-mono text-gray-600 tracking-widest hidden md:inline">{number}</span>
         )}
         <span className="flex-1 h-px bg-border max-w-[40px] hidden md:block" />
         <p className="text-xs font-mono tracking-[0.2em] uppercase text-accent-light">
