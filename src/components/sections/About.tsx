@@ -141,7 +141,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-            className="space-y-6"
+            className="space-y-6 lg:pt-16"
           >
             <div className="space-y-4 text-gray-200 leading-relaxed">
               <p>
