@@ -85,6 +85,31 @@ export function About() {
               </div>
             </motion.div>
 
+            {/* Focus + status */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.12, ease: EASE }}
+              className="grid grid-cols-2 gap-4"
+            >
+              <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-card px-4 py-3">
+                <p className="text-[10px] font-mono tracking-[0.2em] uppercase text-gray-500 mb-2">Focus</p>
+                <ul className="space-y-1 text-xs font-mono text-gray-300">
+                  <li>PCB Design</li>
+                  <li>Circuit Analysis</li>
+                  <li>Power Electronics</li>
+                </ul>
+              </div>
+              <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-card px-4 py-3">
+                <p className="text-[10px] font-mono tracking-[0.2em] uppercase text-gray-500 mb-2">Status</p>
+                <span className="inline-flex items-center gap-2 text-xs font-mono text-accent-light">
+                  <span className="w-2 h-2 rounded-full bg-accent-light animate-pulse flex-shrink-0" />
+                  Open to opportunities
+                </span>
+              </div>
+            </motion.div>
+
             {/* Stat pills */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -125,25 +150,6 @@ export function About() {
               <p>
                 What started as a steep learning curve quickly turned into a passion for hardware design. My sweet spot is owning the entire circuit lifecycle: taking a concept from LTspice and Altium layouts all the way to a fully tested, multi-layer board. I don&apos;t just route traces—I engineer around physical limits. Whether I&apos;m isolating a noisy power rail, tuning gate driver dead-time to prevent shoot-through, or packaging it all into a tight form factor, solving complex problems within physical constraints is what I do best.
               </p>
-            </div>
-
-            {/* Focus + status */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-card px-4 py-3">
-                <p className="text-[10px] font-mono tracking-[0.2em] uppercase text-gray-500 mb-2">Focus</p>
-                <ul className="space-y-1 text-xs font-mono text-gray-300">
-                  <li>PCB Design</li>
-                  <li>Circuit Analysis</li>
-                  <li>Power Electronics</li>
-                </ul>
-              </div>
-              <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-card px-4 py-3">
-                <p className="text-[10px] font-mono tracking-[0.2em] uppercase text-gray-500 mb-2">Status</p>
-                <span className="inline-flex items-center gap-2 text-xs font-mono text-accent-light">
-                  <span className="w-2 h-2 rounded-full bg-accent-light animate-pulse flex-shrink-0" />
-                  Open to opportunities
-                </span>
-              </div>
             </div>
 
           </motion.div>
