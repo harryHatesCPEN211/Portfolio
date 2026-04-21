@@ -217,6 +217,24 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           ) : null}
 
 
+          {/* Gallery — always visible, above dropdowns */}
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="mb-6">
+              <GallerySection items={project.gallery} />
+            </div>
+          )}
+
+          {project.teamPhoto && (
+            <figure className="space-y-3 mb-6">
+              <div className="relative w-full rounded-card overflow-hidden border border-border">
+                <Image src={project.teamPhoto} alt="Project team" width={1200} height={800} className="w-full h-auto object-cover" />
+              </div>
+              {project.teamCaption && (
+                <figcaption className="text-xs font-mono text-gray-500 leading-relaxed">{project.teamCaption}</figcaption>
+              )}
+            </figure>
+          )}
+
           {/* Case study — all sections as dropdowns */}
           <div className="space-y-3 text-gray-300">
 
@@ -262,25 +280,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     className="absolute inset-0 w-full h-full"
                   />
                 </div>
-              </CollapsibleSection>
-            )}
-
-            {project.gallery && project.gallery.length > 0 && (
-              <CollapsibleSection title="Gallery">
-                <GallerySection items={project.gallery} />
-              </CollapsibleSection>
-            )}
-
-            {project.teamPhoto && (
-              <CollapsibleSection title="Team">
-                <figure className="space-y-3">
-                  <div className="relative w-full rounded-card overflow-hidden border border-border">
-                    <Image src={project.teamPhoto} alt="Project team" width={1200} height={800} className="w-full h-auto object-cover" />
-                  </div>
-                  {project.teamCaption && (
-                    <figcaption className="text-xs font-mono text-gray-500 leading-relaxed">{project.teamCaption}</figcaption>
-                  )}
-                </figure>
               </CollapsibleSection>
             )}
 
