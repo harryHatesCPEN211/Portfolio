@@ -1,18 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface CollapsibleSectionProps {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
+  id?: string;
 }
 
-export function CollapsibleSection({ title, children, defaultOpen = false }: CollapsibleSectionProps) {
+export function CollapsibleSection({ title, children, defaultOpen = false, id }: CollapsibleSectionProps) {
   const [open, setOpen] = useState(defaultOpen);
 
+  useEffect(() => {
+    if (!id) return;
+    const check = () => {
+      if (window.location.hash === `#${id}`) setOpen(true);
+    };
+    check();
+    window.addEventListener("hashchange", check);
+    return () => window.removeEventListener("hashchange", check);
+  }, [id]);
+
   return (
-    <div className="border border-border rounded-card overflow-hidden">
+    <div id={id} className="border border-border rounded-card overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-5 py-4 bg-surface hover:bg-surface-2/60 transition-colors duration-150 group"
