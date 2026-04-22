@@ -18,7 +18,10 @@ import { DiagramViewer } from "@/components/viewer/DiagramViewer";
 
 // ── Gallery ───────────────────────────────────────────────────────────────────
 
-function GallerySection({ items }: { items: GalleryItem[] }) {
+const SCROLL_GALLERY_SLUGS = new Set(["piano-robot", "hapticbot"]);
+
+function GallerySection({ items, slug }: { items: GalleryItem[]; slug: string }) {
+  const useScroll = SCROLL_GALLERY_SLUGS.has(slug);
   const videos = items.filter((i) => i.type === "video" || i.type === "youtube");
 
   // Group non-video items by their group field, preserving insertion order
@@ -69,62 +72,111 @@ function GallerySection({ items }: { items: GalleryItem[] }) {
         </div>
       )}
 
-      {/* Image groups — horizontal scroll */}
+      {/* Image groups */}
       {Object.entries(groups).map(([groupName, groupItems]) => (
         <div key={groupName} className="mb-6">
           <p className="font-mono text-sm font-medium text-accent-light mb-2 tracking-wide">
             {groupName}
           </p>
-          <div
-            className="flex gap-3 overflow-x-auto pb-3 snap-x snap-mandatory"
-            style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.08) transparent" }}
-          >
-            {groupItems.map((item) =>
-              item.natural ? (
-                <a
-                  key={item.src}
-                  href={item.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group flex-shrink-0 snap-start relative rounded-card overflow-hidden border border-border bg-surface-2 hover:border-accent/40 transition-colors duration-150 h-52 ${item.wide ? "w-[480px]" : "w-72"}`}
-                  title="Open full size"
-                >
-                  <img
-                    src={item.src}
-                    alt={item.caption}
-                    className="w-full h-full object-contain"
-                  />
-                  <span className="absolute bottom-2 left-2 right-2 flex justify-center">
-                    <span className="bg-black/75 backdrop-blur-sm text-white text-[10px] font-mono tracking-wide px-2.5 py-1 rounded-full">
-                      {item.caption}
+
+          {useScroll ? (
+            /* Horizontal scroll layout */
+            <div
+              className="flex gap-3 overflow-x-auto pb-3 snap-x snap-mandatory"
+              style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.08) transparent" }}
+            >
+              {groupItems.map((item) =>
+                item.natural ? (
+                  <a
+                    key={item.src}
+                    href={item.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group flex-shrink-0 snap-start relative rounded-card overflow-hidden border border-border bg-surface-2 hover:border-accent/40 transition-colors duration-150 h-52 ${item.wide ? "w-[480px]" : "w-72"}`}
+                    title="Open full size"
+                  >
+                    <img src={item.src} alt={item.caption} className="w-full h-full object-contain" />
+                    <span className="absolute bottom-2 left-2 right-2 flex justify-center">
+                      <span className="bg-black/75 backdrop-blur-sm text-white text-[10px] font-mono tracking-wide px-2.5 py-1 rounded-full">
+                        {item.caption}
+                      </span>
                     </span>
-                  </span>
-                </a>
-              ) : (
-                <a
-                  key={item.src}
-                  href={item.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group flex-shrink-0 snap-start relative rounded-card overflow-hidden border border-border bg-surface-2 hover:border-accent/40 transition-colors duration-150 h-52 ${item.wide ? "w-[480px]" : "w-72"}`}
-                  title="Open full size"
-                >
-                  <Image
-                    src={item.src}
-                    alt={item.caption}
-                    fill
-                    className={`${item.objectFit === "contain" ? "object-contain p-3" : "object-cover group-hover:scale-[1.02]"} transition-transform duration-300`}
-                    sizes={item.wide ? "480px" : "288px"}
-                  />
-                  <span className="absolute bottom-2 left-2 right-2 flex justify-center">
-                    <span className="bg-black/75 backdrop-blur-sm text-white text-[10px] font-mono tracking-wide px-2.5 py-1 rounded-full">
-                      {item.caption}
+                  </a>
+                ) : (
+                  <a
+                    key={item.src}
+                    href={item.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group flex-shrink-0 snap-start relative rounded-card overflow-hidden border border-border bg-surface-2 hover:border-accent/40 transition-colors duration-150 h-52 ${item.wide ? "w-[480px]" : "w-72"}`}
+                    title="Open full size"
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.caption}
+                      fill
+                      className={`${item.objectFit === "contain" ? "object-contain p-3" : "object-cover group-hover:scale-[1.02]"} transition-transform duration-300`}
+                      sizes={item.wide ? "480px" : "288px"}
+                    />
+                    <span className="absolute bottom-2 left-2 right-2 flex justify-center">
+                      <span className="bg-black/75 backdrop-blur-sm text-white text-[10px] font-mono tracking-wide px-2.5 py-1 rounded-full">
+                        {item.caption}
+                      </span>
                     </span>
-                  </span>
-                </a>
-              )
-            )}
-          </div>
+                  </a>
+                )
+              )}
+            </div>
+          ) : (
+            /* Original grid layout */
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {groupItems.map((item) =>
+                item.natural ? (
+                  <a
+                    key={item.src}
+                    href={item.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group block relative rounded-card overflow-hidden border border-border bg-surface-2 hover:border-accent/40 transition-colors duration-150 ${item.wide ? "sm:col-span-2" : ""}`}
+                    title="Open full size"
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.caption}
+                      className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                    />
+                    <span className="absolute bottom-2 left-2 right-2 flex justify-center">
+                      <span className="bg-black/75 backdrop-blur-sm text-white text-[10px] font-mono tracking-wide px-2.5 py-1 rounded-full">
+                        {item.caption}
+                      </span>
+                    </span>
+                  </a>
+                ) : (
+                  <a
+                    key={item.src}
+                    href={item.src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group block relative rounded-card overflow-hidden border border-border bg-surface-2 hover:border-accent/40 transition-colors duration-150 ${item.wide ? "sm:col-span-2 aspect-[2.5/1]" : item.objectFit === "contain" ? "aspect-[4/3]" : "aspect-video"}`}
+                    title="Open full size"
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.caption}
+                      fill
+                      className={`${item.objectFit === "contain" ? "object-contain p-3" : "object-cover group-hover:scale-[1.02]"} transition-transform duration-300`}
+                      sizes={item.wide ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
+                    />
+                    <span className="absolute bottom-2 left-2 right-2 flex justify-center">
+                      <span className="bg-black/75 backdrop-blur-sm text-white text-[10px] font-mono tracking-wide px-2.5 py-1 rounded-full">
+                        {item.caption}
+                      </span>
+                    </span>
+                  </a>
+                )
+              )}
+            </div>
+          )}
         </div>
       ))}
     </section>
@@ -245,7 +297,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                     </div>
                   )}
                   {project.gallery && project.gallery.length > 0 && (
-                    <GallerySection items={project.gallery} />
+                    <GallerySection items={project.gallery} slug={project.slug} />
                   )}
                 </div>
               ) : null}
