@@ -18,7 +18,7 @@ import { DiagramViewer } from "@/components/viewer/DiagramViewer";
 
 // ── Gallery ───────────────────────────────────────────────────────────────────
 
-const SCROLL_GALLERY_SLUGS = new Set(["hapticbot"]);
+const SCROLL_GALLERY_SLUGS = new Set<string>();
 
 function GallerySection({ items, slug }: { items: GalleryItem[]; slug: string }) {
   const useScroll = SCROLL_GALLERY_SLUGS.has(slug);

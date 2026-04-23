@@ -134,7 +134,26 @@ export function Projects() {
           ))}
           <MoreToComePlaceholder />
         </div>
+        {/* Right-edge fade hint — mobile only */}
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0f0f0f] to-transparent pointer-events-none sm:hidden" />
       </div>
+
+      {/* Swipe indicator — mobile only */}
+      <motion.p
+        className="sm:hidden flex items-center justify-center gap-2 mt-3 text-[10px] font-mono tracking-[0.2em] uppercase text-gray-600"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        Swipe to explore
+        <motion.span
+          animate={{ x: [0, 4, 0] }}
+          transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+        >
+          →
+        </motion.span>
+      </motion.p>
     </motion.section>
   );
 }
