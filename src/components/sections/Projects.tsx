@@ -24,7 +24,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       <div className="relative h-48 bg-surface-2 overflow-hidden flex-shrink-0">
         {project.imageRight ? (
           <div className="absolute inset-0 flex">
-            <div className="relative w-1/2 h-full border-r border-border">
+            <div className="relative w-1/2 h-full">
               {project.image && (
                 <Image
                   src={project.image}
@@ -36,7 +36,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
                 />
               )}
             </div>
-            <div className={`relative w-1/2 h-full ${project.imageRightFit === "cover" ? "" : "bg-white"}`}>
+            <div className={`relative w-1/2 h-full ${project.imageRightFit === "cover" ? "" : "bg-neutral-100/90"}`}>
               <Image
                 src={project.imageRight}
                 alt=""
