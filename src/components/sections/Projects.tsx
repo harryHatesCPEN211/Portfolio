@@ -18,7 +18,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.4, delay: index * 0.06, ease: EASE }}
-      className="group w-72 sm:w-80 flex-shrink-0 snap-start bg-surface border border-border rounded-card overflow-hidden hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_32px_rgba(26,58,42,0.2)] transition-all duration-200 flex flex-col"
+      className="group w-full sm:w-80 flex-shrink-0 snap-start bg-surface border border-border rounded-card overflow-hidden hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_32px_rgba(26,58,42,0.2)] transition-all duration-200 flex flex-col"
     >
       {/* Image */}
       <div className="relative h-48 bg-surface-2 overflow-hidden flex-shrink-0">
@@ -52,7 +52,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
             alt={project.title}
             fill
             className={`${project.imageFit === "contain" ? "object-contain" : "object-cover group-hover:scale-[1.03]"} transition-transform duration-300`}
-            sizes="320px"
+            sizes="(max-width: 640px) calc(100vw - 3rem), 320px"
             priority={isFeatured}
           />
         ) : (
@@ -101,7 +101,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
 function MoreToComePlaceholder() {
   return (
-    <div className="w-56 flex-shrink-0 snap-start bg-surface border border-dashed border-border rounded-card flex flex-col items-center justify-center gap-3 opacity-40">
+    <div className="w-full sm:w-56 flex-shrink-0 snap-start bg-surface border border-dashed border-border rounded-card flex flex-col items-center justify-center gap-3 opacity-40 min-h-[240px] sm:min-h-0">
       <div className="w-9 h-9 rounded-full border border-dashed border-gray-600 flex items-center justify-center">
         <span className="text-gray-500 text-lg leading-none">+</span>
       </div>
@@ -126,16 +126,29 @@ export function Projects() {
         <SectionHeader label="Work" title="Selected projects" number="03" />
       </div>
 
-      {/* Horizontal scroll track — centered, scrollable on small screens */}
-      <div className="relative overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {/* Mobile: one card at a time */}
+      <div className="sm:hidden overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex snap-x snap-mandatory">
+          {projects.map((project, i) => (
+            <div key={project.slug} className="w-[100vw] flex-shrink-0 snap-center px-6 pb-4">
+              <ProjectCard project={project} index={i} />
+            </div>
+          ))}
+          <div className="w-[100vw] flex-shrink-0 snap-center px-6 pb-4">
+            <MoreToComePlaceholder />
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop (sm+): multi-card horizontal scroll */}
+      <div className="hidden sm:block relative overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="flex gap-5 snap-x snap-mandatory pb-4 px-6 lg:px-12 justify-center min-w-fit mx-auto">
           {projects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} index={i} />
           ))}
           <MoreToComePlaceholder />
         </div>
-        {/* Right-edge fade hint — mobile only */}
-        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0f0f0f] to-transparent pointer-events-none sm:hidden" />
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0f0f0f] to-transparent pointer-events-none" />
       </div>
 
       {/* Swipe indicator — mobile only */}
