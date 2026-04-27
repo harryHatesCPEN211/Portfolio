@@ -166,8 +166,6 @@ export const projects: Project[] = [
     tags: ["Altium Designer", "ESP32-S3", "BLDC / FOC", "TMC6300", "Current Sensing", "PCB Layout", "JLCPCB"],
     image: "/images/projects/Haptic_Knob.png",
     imageFit: "contain",
-    imageRight: "/images/projects/Open_Robotics.png",
-    imageRightFit: "contain",
     featured: true,
     models: [
       { path: "/models/haptic-knob.glb", label: "Haptic Knob PCB — Rev 1" },
