@@ -24,17 +24,19 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       <div className="relative h-48 bg-surface-2 overflow-hidden flex-shrink-0">
         {project.imageRight ? (
           <>
-            {/* Mobile: main image full-width */}
-            {project.image && (
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className={`sm:hidden ${project.imageFit === "contain" ? "object-contain" : "object-cover group-hover:scale-[1.03]"} transition-transform duration-300`}
-                sizes="288px"
-                priority={isFeatured}
-              />
-            )}
+            {/* Mobile (<sm): main image only, full-width */}
+            <div className="absolute inset-0 sm:hidden">
+              {project.image && (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className={`${project.imageFit === "contain" ? "object-contain" : "object-cover"} transition-transform duration-300`}
+                  sizes="288px"
+                  priority={isFeatured}
+                />
+              )}
+            </div>
             {/* sm+: split layout */}
             <div className="absolute inset-0 hidden sm:flex">
               <div className="relative w-1/2 h-full">
