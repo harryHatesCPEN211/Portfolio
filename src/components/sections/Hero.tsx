@@ -74,7 +74,7 @@ export function Hero() {
             <p className="text-xs font-mono tracking-[0.25em] uppercase text-accent-light">
               3rd-year Electrical Engineering Student
             </p>
-            <p className="text-[10px] font-mono tracking-[0.2em] uppercase text-gray-500 mt-1 flex items-center gap-1.5">
+            <p className="text-[10px] font-mono tracking-[0.2em] uppercase text-gray-500 mt-1 flex items-center gap-1.5 justify-center md:justify-start">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-2.5 h-2.5 flex-shrink-0">
                 <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-2.003 3.5-4.697 3.5-8.327a8 8 0 10-16 0c0 3.63 1.556 6.324 3.5 8.327a19.58 19.58 0 002.683 2.282 16.975 16.975 0 001.144.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
               </svg>

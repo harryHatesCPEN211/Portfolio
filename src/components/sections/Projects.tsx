@@ -23,29 +23,43 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       {/* Image */}
       <div className="relative h-48 bg-surface-2 overflow-hidden flex-shrink-0">
         {project.imageRight ? (
-          <div className="absolute inset-0 flex">
-            <div className="relative w-1/2 h-full">
-              {project.image && (
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className={`${project.imageFit === "contain" ? "object-contain p-1" : "object-cover group-hover:scale-[1.03]"} transition-transform duration-300`}
-                  sizes="160px"
-                  priority={isFeatured}
-                />
-              )}
-            </div>
-            <div className={`relative w-1/2 h-full ${project.imageRightFit === "cover" ? "" : "bg-neutral-100/90"}`}>
+          <>
+            {/* Mobile: main image full-width */}
+            {project.image && (
               <Image
-                src={project.imageRight}
-                alt=""
+                src={project.image}
+                alt={project.title}
                 fill
-                className={`${project.imageRightFit === "cover" ? "object-cover group-hover:scale-[1.03]" : "object-contain p-4"} transition-transform duration-300`}
-                sizes="160px"
+                className={`sm:hidden ${project.imageFit === "contain" ? "object-contain" : "object-cover group-hover:scale-[1.03]"} transition-transform duration-300`}
+                sizes="288px"
+                priority={isFeatured}
               />
+            )}
+            {/* sm+: split layout */}
+            <div className="absolute inset-0 hidden sm:flex">
+              <div className="relative w-1/2 h-full">
+                {project.image && (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className={`${project.imageFit === "contain" ? "object-contain p-1" : "object-cover group-hover:scale-[1.03]"} transition-transform duration-300`}
+                    sizes="160px"
+                    priority={isFeatured}
+                  />
+                )}
+              </div>
+              <div className={`relative w-1/2 h-full border-l border-border ${project.imageRightFit === "cover" ? "" : "bg-white"}`}>
+                <Image
+                  src={project.imageRight}
+                  alt=""
+                  fill
+                  className={`${project.imageRightFit === "cover" ? "object-cover group-hover:scale-[1.03]" : "object-contain p-4"} transition-transform duration-300`}
+                  sizes="160px"
+                />
+              </div>
             </div>
-          </div>
+          </>
         ) : project.image ? (
           <Image
             src={project.image}
