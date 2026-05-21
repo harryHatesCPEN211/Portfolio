@@ -6,7 +6,7 @@ export function Footer() {
           © {new Date().getFullYear()} Harry Nguyen
         </p>
         <p className="text-xs font-mono text-gray-600">
-          Electrical Engineering · University of British Columbia
+          Electrical Engineering · University of British Columbia · Built with Next.js
         </p>
       </div>
     </footer>
