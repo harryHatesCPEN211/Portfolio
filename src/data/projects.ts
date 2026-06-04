@@ -456,8 +456,6 @@ export const projects: Project[] = [
       "A microcontroller-controlled reflow oven that investigates and executes all aspects of reflow soldering — design, hardware, firmware, testing, and application. The system solders SMD components onto PCBs hands-free by following a pre-programmed thermal profile: preheat → soak → reflow → cooldown. All firmware is written in 8051 Assembly on an EFM8 microcontroller, with real-time temperature validation via Python Matplotlib.\n\nThe oven measures temperatures from 25°C to 240°C with ±3°C accuracy. Four reflow parameters are fully customizable via pushbuttons — reflow temperature, reflow time, soak temperature, and soak time — with a dedicated start/stop button to initiate or abort the process at any time. The LCD displays the current reflow state, live oven temperature, and running time (both total elapsed and per-stage) throughout the process.\n\nThe system includes automatic abort logic: if the thermocouple is improperly placed or the oven fails to reach 50°C within the first 60 seconds, the process terminates safely.",
     tags: ["8051 Assembly", "EFM8", "Embedded Systems", "FSM", "SSR Control", "Python", "Discrete Circuit Design"],
     image: "/images/projects/oven.png",
-    imageRight: "/images/projects/oven2.png",
-    imageRightFit: "cover",
     featured: true,
     youtubeUrl: "https://www.youtube.com/embed/dOqIaySOhiM",
     galleryInline: true,
