@@ -15,8 +15,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.article
       initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.06, ease: EASE }}
       className="group w-full sm:w-80 flex-shrink-0 snap-start bg-surface border border-border rounded-card overflow-hidden hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_8px_32px_rgba(26,58,42,0.2)] transition-all duration-200 flex flex-col"
     >
