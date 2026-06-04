@@ -147,7 +147,6 @@ export function Projects() {
           ))}
           <MoreToComePlaceholder />
         </div>
-        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0f0f0f] to-transparent pointer-events-none" />
       </div>
 
       {/* Swipe indicator — mobile only */}
