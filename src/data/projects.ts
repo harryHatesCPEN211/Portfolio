@@ -354,6 +354,100 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "wisdom-dispenser",
+    title: "Wisdom Dispenser & Photo Frame",
+    year: 2025,
+    shortDesc: "A hand-built embedded gift device featuring a 3.5\" SPI TFT display, 365 curated quotes, SD card photo frame mode, and a custom multi-level menu — soldered by hand on a protoboard.",
+    description:
+      "A fully custom embedded device designed and built as a personal gift, featuring a 3.5\" ILI9488 SPI TFT display driven by an ESP32-S3 microcontroller. The device runs a C++ firmware architecture with a multi-level navigation menu, Fisher-Yates shuffle engine, persistent flash storage, JPEG photo decoding via SD card, and 365 hand-written quotes across multiple categories. The enclosure was 3D printed on a Bambu Lab X1 Carbon and the entire circuit was hand-soldered on a protoboard with a USB-C power input, SPDT power switch, and power indicator LED.",
+    tags: ["ESP32-S3", "C++", "Arduino", "SPI", "Embedded Systems", "Protoboard Assembly", "3D Printing", "TFT Display", "SD Card", "JPEG Decoding"],
+    featured: false,
+    problem:
+      "How do you build a polished, reliable consumer-grade embedded device from scratch — with no PCB, no dev shield, no existing product to base it on — that handles concurrent SPI peripherals, persistent state, and media playback stably enough to give as a gift?",
+    approach:
+      "Designed the full firmware architecture in C++ from scratch including a multi-level UI state machine, Fisher-Yates shuffle with no-repeat logic, and progressive milestone system. Resolved SPI bus conflicts between the ILI9488 display and SD card sharing GPIO lines by tuning chip select timing and SPI frequency. Hand-soldered all components onto a protoboard with a custom power circuit including USB-C breakout, SPDT switch, and indicator LED. Iterated through multiple hardware and firmware debug cycles using Serial Monitor logging.",
+    outcome:
+      "A fully functional, stable device with 365 quotes, photo frame mode, a 3-level navigation menu, Harry's Picks mode, auto/manual playback, persistent lifetime press counter with milestone celebrations, and a hold-to-reset safety mechanism. Successfully gifted.",
+    techSpecs: [
+      { label: "MCU",           value: "ESP32-S3 Freenove WROOM" },
+      { label: "Display",       value: "3.5\" ILI9488 SPI TFT (480×320)" },
+      { label: "Storage",       value: "MicroSD card (FAT32, /photos folder)" },
+      { label: "Power",         value: "USB-C breakout, 5V SPDT switch, 1kΩ LED indicator" },
+      { label: "Firmware",      value: "C++ / Arduino framework" },
+      { label: "Libraries",     value: "Arduino GFX 1.4.7, TJpg_Decoder, Preferences, SD" },
+      { label: "Enclosure",     value: "3D printed PLA, Bambu Lab X1 Carbon" },
+      { label: "SPI frequency", value: "20MHz (display), 20MHz (SD)" },
+      { label: "Quote pool",    value: "365 entries, Fisher-Yates shuffled" },
+    ],
+    challenges: [
+      {
+        title: "SPI Bus Conflicts Between Display and SD Card",
+        detail:
+          "Both the ILI9488 display and the SD card share the same SPI bus (MOSI, MISO, SCK) on GPIOs 11, 12, 13, with separate chip select lines on GPIOs 5 and 17. Getting both peripherals to coexist stably required careful SPI frequency tuning and correct chip select sequencing. Early builds suffered from corrupted display output and failed SD initialisation until the SPI clock was tuned and the SD initialisation sequence was isolated with retry logic.",
+      },
+      {
+        title: "Library Version Compatibility",
+        detail:
+          "The Arduino GFX Library had breaking changes across versions that caused display initialisation to fail silently. Locking to version 1.4.7 was required for stable ILI9488 18-bit colour output. Additionally, TJpg_Decoder's byte swap setting needed to be explicitly set to false for correct colour rendering on this specific display driver — a non-obvious configuration that required systematic debugging.",
+      },
+      {
+        title: "JPEG Photo Scaling and Loading Performance",
+        detail:
+          "TJpg_Decoder only supports fixed scale factors of 1, 2, 4, and 8 — meaning photos from a phone camera at 4000×3000px required careful scale factor selection to fit the 480×320 display without distortion or excessive black borders. Loading time was also a concern; implementing a \"Loading...\" indicator and recommending pre-resized 480×320 photos significantly improved perceived performance.",
+      },
+      {
+        title: "Debounce and State Machine Stability",
+        detail:
+          "With three buttons controlling a multi-level menu across five display modes, debounce timing was critical. A shared debounce timestamp caused cross-button interference where a slow screen transition left the debounce window open, allowing a second button press to register immediately. Moving the debounce timestamp reset to the top of each button handler — before the transition — resolved the issue cleanly.",
+      },
+      {
+        title: "Protoboard Power Circuit Design",
+        detail:
+          "Designing a reliable power circuit without a custom PCB required careful planning. The 5V line from the USB-C breakout feeds through an SPDT switch to both the ESP32 5V pin and a 1kΩ current-limiting resistor for the power LED. Ensuring clean power delivery without voltage drops during SD card initialisation required adding startup delays and retry logic in the SD init routine.",
+      },
+    ],
+    gallery: [
+      {
+        type: "image",
+        src: "/images/projects/wisdom-dispenser-full.jpg",
+        caption: "Wisdom Dispenser — assembled device",
+        group: "Build Photos",
+        wide: true,
+      },
+      {
+        type: "image",
+        src: "/images/projects/wisdom-dispenser-protoboard.jpg",
+        caption: "Protoboard wiring and power circuit",
+        group: "Build Photos",
+      },
+      {
+        type: "image",
+        src: "/images/projects/wisdom-dispenser-display.jpg",
+        caption: "TFT display — quote mode",
+        group: "Build Photos",
+      },
+      {
+        type: "image",
+        src: "/images/projects/wisdom-dispenser-enclosure.jpg",
+        caption: "3D printed enclosure — Bambu Lab X1 Carbon",
+        group: "Build Photos",
+      },
+      {
+        type: "image",
+        src: "/images/projects/wisdom-dispenser-menu.jpg",
+        caption: "Navigation menu",
+        group: "UI",
+      },
+      {
+        type: "image",
+        src: "/images/projects/wisdom-dispenser-photo-mode.jpg",
+        caption: "Photo frame mode",
+        group: "UI",
+      },
+    ],
+    links: [],
+  },
+  {
     slug: "reflow-oven",
     title: "Microcontroller-Controlled Reflow Oven",
     year: 2025,
